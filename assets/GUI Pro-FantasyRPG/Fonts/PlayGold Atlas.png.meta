@@ -1,0 +1,34 @@
+{
+  "ver": "2.3.3",
+  "uuid": "eaa18dec-3420-483d-a572-5f5bf1b3b72f",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
+  "subMetas": {
+    "PlayGold Atlas": {
+      "ver": "1.0.4",
+      "uuid": "5794651a-1351-478c-b3e9-953f2fff52e8",
+      "rawTextureUuid": "eaa18dec-3420-483d-a572-5f5bf1b3b72f",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -8,
+      "offsetY": -25.5,
+      "trimX": 17,
+      "trimY": 64,
+      "width": 206,
+      "height": 179,
+      "rawWidth": 256,
+      "rawHeight": 256,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

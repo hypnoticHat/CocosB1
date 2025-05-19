@@ -1,0 +1,34 @@
+{
+  "ver": "2.3.3",
+  "uuid": "866e4694-c5a8-41b1-882c-9b01e3e6b4f0",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "platformSettings": {},
+  "subMetas": {
+    "Icon_Wifi1": {
+      "ver": "1.0.4",
+      "uuid": "72d7e4de-58f4-49f2-acd3-17215d55a1d7",
+      "rawTextureUuid": "866e4694-c5a8-41b1-882c-9b01e3e6b4f0",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 11,
+      "height": 7,
+      "rawWidth": 11,
+      "rawHeight": 7,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "archer",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 3.35,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "paths": {
+      "Label_Bubble": {
+        "props": {
+          "active": [
+            {
+              "frame": 0.7833333333333333,
+              "value": true
+            },
+            {
+              "frame": 2.8666666666666667,
+              "value": false
+            }
+          ]
+        }
+      },
+      "Label_Bubble/New Label": {
+        "comps": {
+          "cc.Label": {
+            "string": [
+              {
+                "frame": 0,
+                "value": "hey"
+              },
+              {
+                "frame": 0.8,
+                "value": "Here is something i might say, but i  too lazy to add more into it. so this is it all"
+              },
+              {
+                "frame": 2.1,
+                "value": "see you next time !!"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "d832eeae-948b-43a2-b35a-18f0476ace11"
+            }
+          },
+          {
+            "frame": 0.7833333333333333,
+            "value": {
+              "__uuid__": "faf79225-c6c2-4975-baad-c65905bb18c7"
+            }
+          },
+          {
+            "frame": 1.9,
+            "value": {
+              "__uuid__": "320b65aa-0ea5-44d4-bf60-8c38e51ebfb7"
+            }
+          },
+          {
+            "frame": 2.8666666666666667,
+            "value": {
+              "__uuid__": "b69635bd-554f-49ab-acd9-7b027d332b85"
+            }
+          }
+        ]
+      }
+    },
+    "props": {
+      "opacity": [
+        {
+          "frame": 2.9,
+          "value": 255
+        },
+        {
+          "frame": 3.35,
+          "value": 0
+        }
+      ],
+      "y": [
+        {
+          "frame": 0.6166666666666667,
+          "value": 160
+        },
+        {
+          "frame": 0.8,
+          "value": 170
+        },
+        {
+          "frame": 0.9666666666666667,
+          "value": 160
+        },
+        {
+          "frame": 1.95,
+          "value": 160
+        },
+        {
+          "frame": 2.1333333333333333,
+          "value": 170
+        },
+        {
+          "frame": 2.3,
+          "value": 160
+        },
+        {
+          "frame": 2.8666666666666667,
+          "value": 160
+        },
+        {
+          "frame": 3.05,
+          "value": 170
+        },
+        {
+          "frame": 3.216666666666667,
+          "value": 160
+        }
+      ]
+    }
+  },
+  "events": []
+}
