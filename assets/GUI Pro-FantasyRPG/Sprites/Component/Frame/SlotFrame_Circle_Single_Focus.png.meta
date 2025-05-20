@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "9c19695c-9b0d-44a0-9d05-41015efa742c",
+  "uuid": "dc4a53cb-3728-4f26-8121-62cc24f3c35e",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "SlotFrame_Circle_Single_Focus": {
       "ver": "1.0.4",
-      "uuid": "b15ddd11-380c-4c2a-8253-996c605c07ff",
-      "rawTextureUuid": "9c19695c-9b0d-44a0-9d05-41015efa742c",
+      "uuid": "088e6f39-8e2a-4b59-ae7c-0ab78e52a0a2",
+      "rawTextureUuid": "dc4a53cb-3728-4f26-8121-62cc24f3c35e",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

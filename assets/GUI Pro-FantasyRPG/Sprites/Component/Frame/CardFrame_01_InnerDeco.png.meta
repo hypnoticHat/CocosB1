@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "d588c1a6-2a86-4e1a-83a3-a6547685f549",
+  "uuid": "bd909168-6a70-4a00-9d6c-f653b34024bf",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "CardFrame_01_InnerDeco": {
       "ver": "1.0.4",
-      "uuid": "edb3b66b-af86-484c-9be1-c098122b714d",
-      "rawTextureUuid": "d588c1a6-2a86-4e1a-83a3-a6547685f549",
+      "uuid": "a6e26bdc-10eb-445c-891c-aa10ac577f81",
+      "rawTextureUuid": "bd909168-6a70-4a00-9d6c-f653b34024bf",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

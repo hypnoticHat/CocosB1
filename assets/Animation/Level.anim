@@ -1,0 +1,83 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "Level",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 2,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 54,
+  "curveData": {
+    "props": {
+      "opacity": [
+        {
+          "frame": 0,
+          "value": 255
+        },
+        {
+          "frame": 1,
+          "value": 0
+        },
+        {
+          "frame": 2,
+          "value": 255
+        }
+      ],
+      "position": [
+        {
+          "frame": 0,
+          "value": [
+            -180,
+            -45,
+            0
+          ]
+        },
+        {
+          "frame": 1.1333333333333333,
+          "value": [
+            -172.006,
+            -45,
+            0
+          ]
+        }
+      ]
+    },
+    "comps": {
+      "cc.Label": {
+        "string": [
+          {
+            "frame": 0,
+            "value": "Lv: 1"
+          },
+          {
+            "frame": 1.0166666666666666,
+            "value": "Lv: 100"
+          }
+        ]
+      }
+    },
+    "paths": {
+      "icon_clover": {
+        "comps": {
+          "cc.Sprite": {
+            "spriteFrame": [
+              {
+                "frame": 0,
+                "value": {
+                  "__uuid__": "45d68583-312e-4bca-8684-bef8d1506c27"
+                }
+              },
+              {
+                "frame": 1.0166666666666666,
+                "value": {
+                  "__uuid__": "e7245f80-7229-45c0-8dcb-1f8ab2f4059b"
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "events": []
+}

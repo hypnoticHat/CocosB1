@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "18e7e03b-3c62-4cca-8846-b4ff11b8d787",
+  "uuid": "3ea3de98-9531-4af6-bbf7-e10f71282923",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "IconSet_Menu_02_AdFree_Shadow": {
       "ver": "1.0.4",
-      "uuid": "23993566-c7ee-4d6d-9a23-2b4c8f91b7e3",
-      "rawTextureUuid": "18e7e03b-3c62-4cca-8846-b4ff11b8d787",
+      "uuid": "a06e47f8-4b6e-4f9b-a23c-b731707c8f7b",
+      "rawTextureUuid": "3ea3de98-9531-4af6-bbf7-e10f71282923",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

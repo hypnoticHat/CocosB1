@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "84cdf23a-f33b-43f4-a0b0-07d49f0f8845",
+  "uuid": "2457cbe6-0a2d-418d-a7fa-23ac9a2acf2c",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "CardFrame_02_Border": {
       "ver": "1.0.4",
-      "uuid": "ffb3756f-67b8-4b6f-9b03-360e191b09b1",
-      "rawTextureUuid": "84cdf23a-f33b-43f4-a0b0-07d49f0f8845",
+      "uuid": "4ebff1e8-7082-4bd6-8217-6e8faacaf75a",
+      "rawTextureUuid": "2457cbe6-0a2d-418d-a7fa-23ac9a2acf2c",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -24,10 +24,10 @@
       "height": 147,
       "rawWidth": 139,
       "rawHeight": 147,
-      "borderTop": 0,
-      "borderBottom": 0,
-      "borderLeft": 0,
-      "borderRight": 0,
+      "borderTop": 43,
+      "borderBottom": 36,
+      "borderLeft": 33,
+      "borderRight": 30,
       "subMetas": {}
     }
   }

@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "fa8fd0fe-1075-47e0-a8b6-6894b4766008",
+  "uuid": "66c38c22-4750-4362-a989-07cc04dc20cf",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "Slider_Border_EdgeDeco_02_Demo_Fill": {
       "ver": "1.0.4",
-      "uuid": "59820993-04fa-4b5c-85ef-b0f759602d04",
-      "rawTextureUuid": "fa8fd0fe-1075-47e0-a8b6-6894b4766008",
+      "uuid": "52cda3f4-9d67-40f8-b610-417d892f17f4",
+      "rawTextureUuid": "66c38c22-4750-4362-a989-07cc04dc20cf",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
