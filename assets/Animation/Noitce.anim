@@ -302,6 +302,244 @@
             ]
           }
         }
+      },
+      "adsLabel": {
+        "props": {
+          "position": [
+            {
+              "frame": 1.5,
+              "value": [
+                399.435,
+                0,
+                0
+              ]
+            },
+            {
+              "frame": 5.516666666666667,
+              "value": [
+                -174.054,
+                0,
+                0
+              ]
+            },
+            {
+              "frame": 7.516666666666667,
+              "value": [
+                -432.904,
+                0,
+                0
+              ]
+            }
+          ],
+          "opacity": [
+            {
+              "frame": 1.4166666666666667,
+              "value": 0
+            },
+            {
+              "frame": 2.5833333333333335,
+              "value": 255
+            }
+          ]
+        },
+        "comps": {
+          "cc.Label": {
+            "string": [
+              {
+                "frame": 1.5,
+                "value": "Nạp"
+              },
+              {
+                "frame": 1.85,
+                "value": "Nạp l"
+              },
+              {
+                "frame": 1.9333333333333333,
+                "value": "Nạp lầ"
+              },
+              {
+                "frame": 2.0166666666666666,
+                "value": "Nạp lần"
+              },
+              {
+                "frame": 2.1,
+                "value": "Nạp lần đ"
+              },
+              {
+                "frame": 2.183333333333333,
+                "value": "Nạp lần đầ"
+              },
+              {
+                "frame": 2.2666666666666666,
+                "value": "Nạp lần đầu"
+              },
+              {
+                "frame": 2.35,
+                "value": "Nạp lần đầu v"
+              },
+              {
+                "frame": 2.433333333333333,
+                "value": "Nạp lần đầu vớ"
+              },
+              {
+                "frame": 2.5166666666666666,
+                "value": "Nạp lần đầu với"
+              },
+              {
+                "frame": 2.6,
+                "value": "Nạp lần đầu với ư"
+              },
+              {
+                "frame": 2.683333333333333,
+                "value": "Nạp lần đầu với ưu"
+              },
+              {
+                "frame": 2.7666666666666666,
+                "value": "Nạp lần đầu với ưu đ"
+              },
+              {
+                "frame": 2.85,
+                "value": "Nạp lần đầu với ưu đã"
+              },
+              {
+                "frame": 2.933333333333333,
+                "value": "Nạp lần đầu với ưu đãi"
+              },
+              {
+                "frame": 3.0166666666666666,
+                "value": "Nạp lần đầu với ưu đãi c"
+              },
+              {
+                "frame": 3.1,
+                "value": "Nạp lần đầu với ưu đãi cự"
+              },
+              {
+                "frame": 3.183333333333333,
+                "value": "Nạp lần đầu với ưu đãi cực"
+              },
+              {
+                "frame": 3.2666666666666666,
+                "value": "Nạp lần đầu với ưu đãi cực k"
+              },
+              {
+                "frame": 3.35,
+                "value": "Nạp lần đầu với ưu đãi cực kh"
+              },
+              {
+                "frame": 3.433333333333333,
+                "value": "Nạp lần đầu với ưu đãi cực khủ"
+              },
+              {
+                "frame": 3.5166666666666666,
+                "value": "Nạp lần đầu với ưu đãi cực khủn"
+              },
+              {
+                "frame": 3.6,
+                "value": "Nạp lần đầu với ưu đãi cực khủng"
+              },
+              {
+                "frame": 5.516666666666667,
+                "value": "ạp lần đầu với ưu đãi cực khủng"
+              },
+              {
+                "frame": 5.6,
+                "value": "p lần đầu với ưu đãi cực khủng"
+              },
+              {
+                "frame": 5.683333333333334,
+                "value": " lần đầu với ưu đãi cực khủng"
+              },
+              {
+                "frame": 5.766666666666667,
+                "value": "ần đầu với ưu đãi cực khủng"
+              },
+              {
+                "frame": 5.85,
+                "value": "n đầu với ưu đãi cực khủng"
+              },
+              {
+                "frame": 5.933333333333334,
+                "value": "đầu với ưu đãi cực khủng"
+              },
+              {
+                "frame": 6.016666666666667,
+                "value": "ầu với ưu đãi cực khủng"
+              },
+              {
+                "frame": 6.1,
+                "value": "u với ưu đãi cực khủng"
+              },
+              {
+                "frame": 6.183333333333334,
+                "value": " với ưu đãi cực khủng"
+              },
+              {
+                "frame": 6.266666666666667,
+                "value": "ới ưu đãi cực khủng"
+              },
+              {
+                "frame": 6.35,
+                "value": "i ưu đãi cực khủng"
+              },
+              {
+                "frame": 6.433333333333334,
+                "value": " ưu đãi cực khủng"
+              },
+              {
+                "frame": 6.516666666666667,
+                "value": "u đãi cực khủng"
+              },
+              {
+                "frame": 6.6,
+                "value": " đãi cực khủng"
+              },
+              {
+                "frame": 6.683333333333334,
+                "value": "ãi cực khủng"
+              },
+              {
+                "frame": 6.766666666666667,
+                "value": "i cực khủng"
+              },
+              {
+                "frame": 6.85,
+                "value": " cực khủng"
+              },
+              {
+                "frame": 6.933333333333334,
+                "value": "ực khủng"
+              },
+              {
+                "frame": 7.016666666666667,
+                "value": "c khủng"
+              },
+              {
+                "frame": 7.1,
+                "value": " khủng"
+              },
+              {
+                "frame": 7.183333333333334,
+                "value": "hủng"
+              },
+              {
+                "frame": 7.266666666666667,
+                "value": "ủng"
+              },
+              {
+                "frame": 7.35,
+                "value": "ng"
+              },
+              {
+                "frame": 7.433333333333334,
+                "value": "g"
+              },
+              {
+                "frame": 7.516666666666667,
+                "value": ""
+              }
+            ]
+          }
+        }
       }
     }
   },
