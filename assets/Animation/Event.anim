@@ -3,48 +3,12 @@
   "_name": "Event",
   "_objFlags": 0,
   "_native": "",
-  "_duration": 6.816666666666666,
+  "_duration": 6.316666666666666,
   "sample": 60,
   "speed": 1,
   "wrapMode": 2,
   "curveData": {
     "paths": {
-      "bossRush": {
-        "props": {
-          "opacity": [
-            {
-              "frame": 3.0166666666666666,
-              "value": 255
-            },
-            {
-              "frame": 3.4833333333333334,
-              "value": 0
-            },
-            {
-              "frame": 6.233333333333333,
-              "value": 0
-            },
-            {
-              "frame": 6.816666666666666,
-              "value": 255
-            }
-          ],
-          "active": [
-            {
-              "frame": 0,
-              "value": true
-            },
-            {
-              "frame": 3.4833333333333334,
-              "value": false
-            },
-            {
-              "frame": 6.316666666666666,
-              "value": true
-            }
-          ]
-        }
-      },
       "newsDungeon": {
         "props": {
           "active": [
@@ -108,6 +72,28 @@
             },
             {
               "frame": 4.5,
+              "value": 255
+            }
+          ]
+        }
+      },
+      "BossRush": {
+        "props": {
+          "opacity": [
+            {
+              "frame": 3.4833333333333334,
+              "value": 255
+            },
+            {
+              "frame": 4,
+              "value": 0
+            },
+            {
+              "frame": 5.783333333333333,
+              "value": 0
+            },
+            {
+              "frame": 6.3,
               "value": 255
             }
           ]
