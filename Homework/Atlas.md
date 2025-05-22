@@ -1,4 +1,4 @@
-## Atlas
+## Auto Atlas
 Auto Atlas là một tính năng của Cocos Creator cho phép bạn gộp nhiều ảnh nhỏ (sprite frames) vào một ảnh lớn duy nhất (atlas) trong quá trình build.
 Giúp giảm số lượng texture cần load và chuyển đổi, từ đó:
 - Giảm draw call (lệnh vẽ GPU)
