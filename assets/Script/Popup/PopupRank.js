@@ -8,7 +8,12 @@ cc.Class({
 
     onLoad(){
         this._super();
-        let data = [1,2,3,4,5,6,7,8,9,10];
+        let names = [
+            "PlayerOne", "ShadowStrike", "DragonSlayer", "NightWolf", "GhostRider",
+            "SniperX", "Phoenix", "BlazeStorm", "IronFist", "SilentBlade"
+        ];
+
+        let data = this.randomScore(names)
 
         this.tableController.getComponent('TableController').loadData(data);
     },
@@ -18,6 +23,15 @@ cc.Class({
     },
     hide() {
         this._super();
+    },
+    randomScore(names){
+        return names.map((name, index) => {
+            return {
+                id: index + 1,
+                name: name,
+                score: Math.floor(Math.random() * 10001)
+            };
+        }).sort((b,a)=> a.score - b.score);
     },
 
 

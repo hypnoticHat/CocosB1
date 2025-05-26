@@ -2,103 +2,62 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        labelVolumeBGM: cc.Label,
-        labelVolumeEffect: cc.Label,
-
         bgmClip: {
             type: cc.AudioClip,
-            default: null,
+            default: null
         },
-
         clickSound: {
             type: cc.AudioClip,
-            default: null,
+            default: null
         },
-
-        bgmAudioSource: cc.AudioSource,
-        effectAudioSource: cc.AudioSource,
-
-        BgmToggle: cc.Toggle,
-        SfxToggle: cc.Toggle,
-
-        SliderBGM: cc.Slider,
-        SliderSFX: cc.Slider,
-
-
+        bgmAudioSource: {
+            type: cc.AudioSource,
+            default: null
+        },
+        effectAudioSource: {
+            type: cc.AudioSource,
+            default: null
+        }
     },
+    
 
-    start() {
-        this.audioSettings = {
-            bgm: {
-                source: this.bgmAudioSource,
-                label: this.labelVolumeBGM,
-                volume: 1,
-                step: 0.1,
-            },
-            effect: {
-                source: this.effectAudioSource,
-                label: this.labelVolumeEffect,
-                volume: 1,
-                step: 0.2,
-            },
-        };
-
+    onLoad() {
         this.bgmAudioSource.clip = this.bgmClip;
         this.bgmAudioSource.loop = true;
+        this.bgmAudioSource.volume = 1;
         this.bgmAudioSource.play();
 
-        this.updateAudioSetting("bgm");
-        this.updateAudioSetting("effect");
+        this.effectAudioSource.volume = 1;
+    },
 
-        if (this.BgmToggle) {
-            this.BgmToggle.isChecked = !this.audioSettings.bgm.source.mute;
+    setVolume(type, volume) {
+        if (type === "bgm") {
+            this.bgmAudioSource.volume = volume;
+        } else if (type === "effect") {
+            this.effectAudioSource.volume = volume;
         }
-        
-        if (this.SfxToggle) {
-            this.SfxToggle.isChecked = !this.audioSettings.effect.source.mute;
+    },
+
+    getVolume(type) {
+        if (type === "bgm") {
+            return this.bgmAudioSource.volume;
+        } else if (type === "effect") {
+            return this.effectAudioSource.volume;
         }
+        return 0;
+    },
 
-        this.SliderBGM.node.on('slide', this.onSliderBgmChanged, this);
-        this.SliderSFX.node.on('slide', this.onSliderSfxChanged, this);
-
-        this.SliderBGM.progress = this.audioSettings.bgm.volume;
-        this.SliderSFX.progress = this.audioSettings.effect.volume;
-
+    toggleMute(type, isOn) {
+        if (type === "bgm") {
+            this.bgmAudioSource.mute = !isOn;
+        } else if (type === "effect") {
+            this.effectAudioSource.mute = !isOn;
+        }
     },
 
     playClickSound() {
-        const source = this.audioSettings.effect.source;
-        source.clip = this.clickSound;
-        source.loop = false;
-        source.volume = this.audioSettings.effect.volume;
-        source.play();
-    },
-
-    updateAudioSetting(type) {
-        const setting = this.audioSettings[type];
-        setting.source.volume = setting.volume;
-        setting.label.string = `${Math.round(setting.volume * 100)}`;
-    },
-
-    onSliderBgmChanged(slider) {
-        const value = parseFloat(slider.progress.toFixed(2));
-        this.audioSettings.bgm.volume = value;
-        this.updateAudioSetting("bgm");
-    },
-    
-    onSliderSfxChanged(slider) {
-        const value = parseFloat(slider.progress.toFixed(2));
-        this.audioSettings.effect.volume = value;
-        this.updateAudioSetting("effect");
-    },
-    
-
-    toggleBgmSound() {
-        this.audioSettings.bgm.source.mute = !this.BgmToggle.isChecked;
-    },
-
-    toggleSfxSound() {
-        this.audioSettings.effect.source.mute = !this.SfxToggle.isChecked;
+        this.effectAudioSource.clip = this.clickSound;
+        this.effectAudioSource.loop = false;
+        this.effectAudioSource.play();
     }
-    
 });
