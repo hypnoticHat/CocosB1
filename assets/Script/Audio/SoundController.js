@@ -19,18 +19,33 @@ cc.Class({
             default: null
         }
     },
-    
 
     onLoad() {
+        this.masterVolume = 1;
+
+        this.effectAudioSource.volume = 1;
+        this.playBgm();
+
+        cc.systemEvent.on('volume-change', this.onVolumeChange, this);
+        cc.systemEvent.on('toggle-mute', this.onToggleMute, this);
+        cc.systemEvent.on('play-click-sound', this.playClickSound, this);
+    },
+
+    onDestroy() {
+        cc.systemEvent.off('volume-change', this.onVolumeChange, this);
+        cc.systemEvent.off('toggle-mute', this.onToggleMute, this);
+        cc.systemEvent.off('play-click-sound', this.playClickSound, this);
+    },
+
+    playBgm() {
         this.bgmAudioSource.clip = this.bgmClip;
         this.bgmAudioSource.loop = true;
         this.bgmAudioSource.volume = 1;
         this.bgmAudioSource.play();
-
-        this.effectAudioSource.volume = 1;
     },
 
-    setVolume(type, volume) {
+    onVolumeChange(event) {
+        const { type, volume } = event;
         if (type === "bgm") {
             this.bgmAudioSource.volume = volume;
         } else if (type === "effect") {
@@ -38,16 +53,8 @@ cc.Class({
         }
     },
 
-    getVolume(type) {
-        if (type === "bgm") {
-            return this.bgmAudioSource.volume;
-        } else if (type === "effect") {
-            return this.effectAudioSource.volume;
-        }
-        return 0;
-    },
-
-    toggleMute(type, isOn) {
+    onToggleMute(event) {
+        const { type, isOn } = event;
         if (type === "bgm") {
             this.bgmAudioSource.mute = !isOn;
         } else if (type === "effect") {

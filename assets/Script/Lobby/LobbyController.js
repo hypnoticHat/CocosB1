@@ -3,32 +3,22 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        popupController: cc.Node,
-    },
-
-
-    onLoad () {
-
-    },
-
-    start () {
-        this.lobby = this.popupController.getComponent('PopupController')
     },
 
     showPopupRank() {
-        this.lobby.showPopupRank();
+        cc.systemEvent.emit('popupRank');
     },
     
     hidePopupRank() {
-        this.lobby.hidePopupRank();
+        cc.systemEvent.emit('hidePopupRank');
     },
     
     showPopupSetting() {
-        this.lobby.showPopupSetting();
+        cc.systemEvent.emit('popupSetting');
     },
     
     hidePopupSetting() {
-        this.lobby.hidePopupSetting();
+        cc.systemEvent.emit('hidePopupSetting');
     },
 
 
