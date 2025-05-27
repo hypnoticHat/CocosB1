@@ -17,6 +17,13 @@ cc.Class({
         cc.systemEvent.on('hidePopupSetting', this.hidePopupSetting, this);
     },
 
+    onDestroy() {
+        cc.systemEvent.off('popupRank', this.showPopupRank, this);
+        cc.systemEvent.off('hidePopupRank', this.hidePopupRank, this);
+        cc.systemEvent.off('popupSetting', this.showPopupSetting, this);
+        cc.systemEvent.off('hidePopupSetting', this.hidePopupSetting, this);
+    },
+
     onClickBlur() {
         this.hideAllPopups();
     },
