@@ -10,6 +10,11 @@ cc.Class({
     onLoad() {
         this.blurBackground.on(cc.Node.EventType.TOUCH_END, this.onClickBlur, this);
         this.hideBlur();
+
+        cc.systemEvent.on('popupRank', this.showPopupRank, this);
+        cc.systemEvent.on('hidePopupRank', this.hidePopupRank, this);
+        cc.systemEvent.on('popupSetting', this.showPopupSetting, this);
+        cc.systemEvent.on('hidePopupSetting', this.hidePopupSetting, this);
     },
 
     onClickBlur() {
@@ -18,6 +23,7 @@ cc.Class({
 
     showPopupRank() {
         this.showBlur();
+
         this.PopupRank.getComponent('PopupRank').show();
     },
 

@@ -6,11 +6,11 @@ cc.Class({
         badgeFrames: [cc.SpriteFrame],
     },
 
-    onLoad() {
-        this.cellPool = new cc.NodePool();
-    },
-
     loadData(data) {
+        if (!this.cellPool) {
+            this.cellPool = new cc.NodePool();
+        }
+
         this.data = data;
 
         while (this.node.children.length > 0) {

@@ -12,9 +12,11 @@ cc.Class({
     },
 
     show(){
+        cc.systemEvent.emit('play-click-sound');
         this.node.active = true;
     },
     hide(){
+        cc.systemEvent.emit('play-click-sound');
         this.node.active = false;
     },
 });

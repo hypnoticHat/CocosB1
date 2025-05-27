@@ -6,36 +6,32 @@ cc.Class({
         tableController: cc.Node,
     },
 
-    onLoad(){
+    onLoad() {
         this._super();
-        
+
+        this.names = [
+            "PlayerOne", "ShadowStrike", "DragonSlayer", "NightWolf", "GhostRider",
+            "SniperX", "Phoenix", "BlazeStorm", "IronFist", "SilentBlade"
+        ];
     },
 
     show() {
         this._super();
-        let names = [
-            "PlayerOne", "ShadowStrike", "DragonSlayer", "NightWolf", "GhostRider",
-            "SniperX", "Phoenix", "BlazeStorm", "IronFist", "SilentBlade"
-        ];
 
-        let data = this.randomScore(names)
-
+        let data = this.randomScore(this.names);
         this.tableController.getComponent('TableController').loadData(data);
+    },
 
-    },
-    hide() {
-        this._super();
-    },
-    randomScore(names){
+    randomScore(names) {
         return names.map((name, index) => {
             return {
                 id: index + 1,
                 name: name,
                 score: Math.floor(Math.random() * 10001)
             };
-        }).sort((b,a)=> a.score - b.score);
+        }).sort((b, a) => a.score - b.score);
     },
 
 
- 
+
 });

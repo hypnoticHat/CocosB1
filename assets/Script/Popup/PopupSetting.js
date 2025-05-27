@@ -1,4 +1,3 @@
-
 cc.Class({
     extends: require('PopupItem'),
 
@@ -6,33 +5,38 @@ cc.Class({
         labelVolumeBGM: cc.Label,
         labelVolumeEffect: cc.Label,
 
-        BgmToggle: cc.Toggle,
-        SfxToggle: cc.Toggle,
+        bgmToggle: cc.Toggle,
+        sfxToggle: cc.Toggle,
 
-        SliderBGM: cc.Slider,
-        SliderSFX: cc.Slider,
-
-        soundController: cc.Node,
+        sliderBGM: cc.Slider,
+        sliderSFX: cc.Slider,
     },
 
     start() {
-        this.controller = this.soundController.getComponent('SoundController');
+        this.bgmToggle.isChecked = true;
+        this.sfxToggle.isChecked = true;
 
-        this.BgmToggle.isChecked = !this.controller.bgmAudioSource.mute;
-        this.SfxToggle.isChecked = !this.controller.effectAudioSource.mute;
-
-        this.SliderBGM.progress = this.controller.getVolume("bgm");
-        this.SliderSFX.progress = this.controller.getVolume("effect");
+        this.sliderBGM.progress = 1;
+        this.sliderSFX.progress = 1;
 
         this.updateLabel("bgm");
         this.updateLabel("effect");
 
-        this.SliderBGM.node.on('slide', this.onSliderBgmChanged, this);
-        this.SliderSFX.node.on('slide', this.onSliderSfxChanged, this);
+        this.registerClickSoundFor(this.sliderBGM.node);
+        this.registerClickSoundFor(this.sliderSFX.node);
+        this.registerClickSoundFor(this.bgmToggle.node);
+        this.registerClickSoundFor(this.sfxToggle.node);
+
+        this.sliderBGM.node.on('slide', this.onsliderBgmChanged, this);
+        this.sliderSFX.node.on('slide', this.onsliderSfxChanged, this);
+
+        this.bgmToggle.node.on('toggle', this.toggleBgmSound, this);
+        this.sfxToggle.node.on('toggle', this.toggleSfxSound, this);
+
     },
 
     updateLabel(type) {
-        const volume = this.controller.getVolume(type);
+        const volume = (type === "bgm") ? this.sliderBGM.progress : this.sliderSFX.progress;
         if (type === "bgm") {
             this.labelVolumeBGM.string = `${Math.round(volume * 100)}`;
         } else {
@@ -40,23 +44,32 @@ cc.Class({
         }
     },
 
-    onSliderBgmChanged(slider) {
+    onsliderBgmChanged(slider) {
         const value = parseFloat(slider.progress.toFixed(2));
-        this.controller.setVolume("bgm", value);
         this.updateLabel("bgm");
+        cc.systemEvent.emit('volume-change', { type: "bgm", volume: value });
     },
 
-    onSliderSfxChanged(slider) {
+    onsliderSfxChanged(slider) {
         const value = parseFloat(slider.progress.toFixed(2));
-        this.controller.setVolume("effect", value);
         this.updateLabel("effect");
+        cc.systemEvent.emit('volume-change', { type: "effect", volume: value });
     },
 
     toggleBgmSound() {
-        this.controller.toggleMute("bgm", this.BgmToggle.isChecked);
+        cc.systemEvent.emit('toggle-mute', { type: "bgm", isOn: this.bgmToggle.isChecked });
     },
 
     toggleSfxSound() {
-        this.controller.toggleMute("effect", this.SfxToggle.isChecked);
+        cc.systemEvent.emit('toggle-mute', { type: "effect", isOn: this.sfxToggle.isChecked });
+    },
+    playClickSoundOnce() {
+        cc.systemEvent.emit('play-click-sound');
+    },
+
+    registerClickSoundFor(node) {
+        if (!node) return;
+        const play = this.playClickSoundOnce.bind(this);
+        node.on(cc.Node.EventType.TOUCH_START, play);
     }
 });
