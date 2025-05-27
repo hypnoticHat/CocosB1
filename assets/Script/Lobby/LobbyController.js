@@ -12,23 +12,23 @@ cc.Class({
     },
 
     start () {
-        this.lobby = this.popupController.getComponent('PopupController')
+        this.Popup = this.popupController.getComponent('PopupController')
     },
 
     showPopupRank() {
-        this.lobby.showPopupRank();
+        this.Popup.showPopupRank();
     },
     
     hidePopupRank() {
-        this.lobby.hidePopupRank();
+        this.Popup.hidePopupRank();
     },
     
     showPopupSetting() {
-        this.lobby.showPopupSetting();
+        this.Popup.showPopupSetting();
     },
     
     hidePopupSetting() {
-        this.lobby.hidePopupSetting();
+        this.Popup.hidePopupSetting();
     },
 
 

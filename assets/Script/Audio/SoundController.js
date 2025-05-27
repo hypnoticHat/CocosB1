@@ -22,12 +22,17 @@ cc.Class({
     
 
     onLoad() {
+
+        this.effectAudioSource.volume = 1;
+
+        this.playBgm();
+    },
+
+    playBgm() {
         this.bgmAudioSource.clip = this.bgmClip;
         this.bgmAudioSource.loop = true;
         this.bgmAudioSource.volume = 1;
         this.bgmAudioSource.play();
-
-        this.effectAudioSource.volume = 1;
     },
 
     setVolume(type, volume) {

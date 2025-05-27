@@ -6,6 +6,9 @@ cc.Class({
     },
     onLoad () {
         this.node.active = false;
+        this.node.on(cc.Node.EventType.TOUCH_START, (e) => {
+            e.stopPropagation();
+        }, this);
     },
 
     show(){

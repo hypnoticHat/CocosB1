@@ -8,6 +8,11 @@ cc.Class({
 
     onLoad(){
         this._super();
+        
+    },
+
+    show() {
+        this._super();
         let names = [
             "PlayerOne", "ShadowStrike", "DragonSlayer", "NightWolf", "GhostRider",
             "SniperX", "Phoenix", "BlazeStorm", "IronFist", "SilentBlade"
@@ -16,10 +21,7 @@ cc.Class({
         let data = this.randomScore(names)
 
         this.tableController.getComponent('TableController').loadData(data);
-    },
 
-    show() {
-        this._super();
     },
     hide() {
         this._super();
