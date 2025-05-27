@@ -1,0 +1,29 @@
+1.  CUSTOM
+Định nghĩa: Kích thước của node được đặt thủ công (ví dụ: qua node.width, node.height), và hình ảnh sẽ bị kéo giãn để khớp với kích thước đó.
+- Size mode sẽ luôn tự chuyển về custom khi size của node bị chỉnh, nhưng Scale thì không.
+- dùng khi : Khi muốn kiểm soát kích thước hình ảnh một cách tùy ý, không phụ thuộc vào kích thước gốc của sprite frame.
+
+2. TRIMMED
+Định nghĩa: Kích thước node sẽ bằng phần đã được trim của ảnh (tức là ảnh đã bị cắt bỏ phần trong suốt khi import).
+Lưu ý: Nếu sprite không bị trimmed thì kết quả giống RAW. 
+ - Nếu chọn Trimmed và không Trim thì ảnh sẽ thu lại bằng đúng với kích thước trim nhưng vẫn giữ phần trong suốt
+Dùng khi: Muốn node có kích thước nhỏ gọn, chỉ vừa đủ bao quanh nội dung ảnh (đã được xử lý trim).
+
+3. RAW
+Định nghĩa: là kích thước gốc của ảnh(không trim)
+Dùng khi:muốn giữ nguyên toàn bộ kích thước ảnh gốc, kể cả các phần trống xung quanh.
+
+
+4. TRIM
+Định nghĩa: Là hành động cắt bỏ vùng trong suốt xung quanh nội dung ảnh khi đóng gói
+- Sau khi trim, ảnh sẽ được lưu lại với thông tin offset, original size, trimmed size.
+- Nếu không có trim → TRIMMED mode không khác gì RAW.
+
+5. So sánh giữa trimmed và raw
+Trimmed: Loại bỏ các vùng trống không cần thiết
+- giảm kích thước ảnh, bỏ phần thừa
+- Giảm dùng lượng khi tải vào game, tăng hiệu xuất render, Tự động canh chỉnh hình ảnh gọn gàng hơn (không có padding không cần thiết).
+
+Raw:  Giữ nguyên toàn bộ ảnh, kể cả các vùng trống xung quanh.
+- Khi cần giữ kích thước chính xác của hình ảnh như lúc thiết kế ban đầu.
+- Không cần dùng texture atlas hoặc không muốn tối ưu trim tự động.
