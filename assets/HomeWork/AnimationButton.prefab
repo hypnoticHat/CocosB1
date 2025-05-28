@@ -41,8 +41,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
-      "height": 40
+      "width": 150,
+      "height": 60
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -108,8 +108,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
-      "height": 40
+      "width": 150,
+      "height": 60
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -168,7 +168,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
+      "width": 120,
       "height": 40
     },
     "_anchorPoint": {
@@ -216,7 +216,7 @@
     "_useOriginalSize": false,
     "_string": "button",
     "_N$string": "button",
-    "_fontSize": 20,
+    "_fontSize": 18,
     "_lineHeight": 40,
     "_enableWrapText": false,
     "_N$file": null,
@@ -226,7 +226,7 @@
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
-    "_N$overflow": 1,
+    "_N$overflow": 2,
     "_N$cacheMode": 0,
     "_id": ""
   },
@@ -236,7 +236,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "659ebc18-c6a8-4d16-b911-fe0f1a7ea49b"
     },
     "fileId": "f4ZCYruwdDcYU33ZY1ywdi",
     "sync": false
@@ -257,7 +257,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "f0048c10-f03e-4c97-b9d3-3506e1d58952"
+      "__uuid__": "4fc13f6d-8133-4698-942b-e4db3dcbc5d5"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -306,7 +306,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "659ebc18-c6a8-4d16-b911-fe0f1a7ea49b"
     },
     "fileId": "1904DfR1FIbJzg+imG5/xS",
     "sync": false
@@ -324,8 +324,8 @@
     "clickEvents": [],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
-    "_N$transition": 2,
-    "transition": 2,
+    "_N$transition": 3,
+    "transition": 3,
     "_N$normalColor": {
       "__type__": "cc.Color",
       "r": 230,
@@ -369,7 +369,7 @@
       "a": 200
     },
     "_N$normalSprite": {
-      "__uuid__": "f0048c10-f03e-4c97-b9d3-3506e1d58952"
+      "__uuid__": "4fc13f6d-8133-4698-942b-e4db3dcbc5d5"
     },
     "_N$pressedSprite": {
       "__uuid__": "e9ec654c-97a2-4787-9325-e6a10375219a"
@@ -397,7 +397,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "659ebc18-c6a8-4d16-b911-fe0f1a7ea49b"
     },
     "fileId": "1dqZoEhh9AP7cYSOnX8jwR",
     "sync": false
