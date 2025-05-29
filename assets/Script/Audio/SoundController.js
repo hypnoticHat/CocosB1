@@ -1,3 +1,4 @@
+const EventKeys = require('EventKeys');
 cc.Class({
     extends: cc.Component,
 
@@ -26,15 +27,15 @@ cc.Class({
         this.effectAudioSource.volume = 1;
         this.playBgm();
 
-        cc.systemEvent.on('volume-change', this.onVolumeChange, this);
-        cc.systemEvent.on('toggle-mute', this.onToggleMute, this);
-        cc.systemEvent.on('play-click-sound', this.playClickSound, this);
+        cc.systemEvent.on(EventKeys.AUDIO.VOLUME_CHANGE, this.onVolumeChange, this);
+        cc.systemEvent.on(EventKeys.AUDIO.TOGGLE_MUTE, this.onToggleMute, this);
+        cc.systemEvent.on(EventKeys.AUDIO.PLAY_CLICK_SOUND, this.playClickSound, this);
     },
 
     onDestroy() {
-        cc.systemEvent.off('volume-change', this.onVolumeChange, this);
-        cc.systemEvent.off('toggle-mute', this.onToggleMute, this);
-        cc.systemEvent.off('play-click-sound', this.playClickSound, this);
+        cc.systemEvent.off(EventKeys.AUDIO.VOLUME_CHANGE, this.onVolumeChange, this);
+        cc.systemEvent.off(EventKeys.AUDIO.TOGGLE_MUTE, this.onToggleMute, this);
+        cc.systemEvent.off(EventKeys.AUDIO.PLAY_CLICK_SOUND, this.playClickSound)
     },
 
     playBgm() {
