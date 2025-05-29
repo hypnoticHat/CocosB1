@@ -1,3 +1,4 @@
+const EventKeys = require('EventKeys');
 cc.Class({
     extends: cc.Component,
 
@@ -6,17 +7,16 @@ cc.Class({
     },
     onLoad () {
         this.node.active = false;
-        this.node.on(cc.Node.EventType.TOUCH_START, (e) => {
-            e.stopPropagation();
-        }, this);
+
     },
 
-    show(){
-        cc.systemEvent.emit('play-click-sound');
+    show() {
+        cc.systemEvent.emit(EventKeys.AUDIO.PLAY_CLICK_SOUND);
         this.node.active = true;
     },
-    hide(){
-        cc.systemEvent.emit('play-click-sound');
+    
+    hide() {
+        cc.systemEvent.emit(EventKeys.AUDIO.PLAY_CLICK_SOUND);
         this.node.active = false;
-    },
+    }
 });

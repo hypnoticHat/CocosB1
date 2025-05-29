@@ -1,3 +1,4 @@
+const EventKeys = require('EventKeys');
 cc.Class({
     extends: require('PopupItem'),
 
@@ -22,10 +23,11 @@ cc.Class({
         this.updateLabel("bgm");
         this.updateLabel("effect");
 
-        this.registerClickSoundFor(this.sliderBGM.node);
-        this.registerClickSoundFor(this.sliderSFX.node);
-        this.registerClickSoundFor(this.bgmToggle.node);
-        this.registerClickSoundFor(this.sfxToggle.node);
+        this.registerToggleWithSound(this.bgmToggle);
+        this.registerToggleWithSound(this.sfxToggle);        
+
+        this.registerSliderWithSound(this.sliderBGM);
+        this.registerSliderWithSound(this.sliderSFX);
 
         this.sliderBGM.node.on('slide', this.onsliderBgmChanged, this);
         this.sliderSFX.node.on('slide', this.onsliderSfxChanged, this);
@@ -47,29 +49,44 @@ cc.Class({
     onsliderBgmChanged(slider) {
         const value = parseFloat(slider.progress.toFixed(2));
         this.updateLabel("bgm");
-        cc.systemEvent.emit('volume-change', { type: "bgm", volume: value });
+        cc.systemEvent.emit(EventKeys.AUDIO.VOLUME_CHANGE, { type: "bgm", volume: value });
     },
 
     onsliderSfxChanged(slider) {
         const value = parseFloat(slider.progress.toFixed(2));
         this.updateLabel("effect");
-        cc.systemEvent.emit('volume-change', { type: "effect", volume: value });
+        cc.systemEvent.emit(EventKeys.AUDIO.VOLUME_CHANGE, { type: "effect", volume: value });
     },
 
     toggleBgmSound() {
-        cc.systemEvent.emit('toggle-mute', { type: "bgm", isOn: this.bgmToggle.isChecked });
+        cc.systemEvent.emit(EventKeys.AUDIO.TOGGLE_MUTE, {
+            type: "bgm",
+            isOn: this.bgmToggle.isChecked,
+        });
     },
 
     toggleSfxSound() {
-        cc.systemEvent.emit('toggle-mute', { type: "effect", isOn: this.sfxToggle.isChecked });
-    },
-    playClickSoundOnce() {
-        cc.systemEvent.emit('play-click-sound');
+        cc.systemEvent.emit(EventKeys.AUDIO.TOGGLE_MUTE, {
+            type: "effect",
+            isOn: this.sfxToggle.isChecked,
+        });
     },
 
-    registerClickSoundFor(node) {
-        if (!node) return;
-        const play = this.playClickSoundOnce.bind(this);
-        node.on(cc.Node.EventType.TOUCH_START, play);
+    playClickSoundOnce() {
+        cc.systemEvent.emit(EventKeys.AUDIO.PLAY_CLICK_SOUND);
+    },
+
+    registerToggleWithSound(toggle) {
+    
+        toggle.node.on('toggle', () => {
+            this.playClickSoundOnce();
+        });
+    },
+
+    registerSliderWithSound(slider) {
+    
+        slider.node.on(cc.Node.EventType.TOUCH_END, () => {
+            this.playClickSoundOnce();
+        });
     }
 });

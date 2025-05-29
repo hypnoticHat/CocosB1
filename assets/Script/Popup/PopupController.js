@@ -1,3 +1,4 @@
+const EventKeys = require('EventKeys');
 cc.Class({
     extends: cc.Component,
 
@@ -11,17 +12,17 @@ cc.Class({
         this.blurBackground.on(cc.Node.EventType.TOUCH_END, this.onClickBlur, this);
         this.hideBlur();
 
-        cc.systemEvent.on('popupRank', this.showPopupRank, this);
-        cc.systemEvent.on('hidePopupRank', this.hidePopupRank, this);
-        cc.systemEvent.on('popupSetting', this.showPopupSetting, this);
-        cc.systemEvent.on('hidePopupSetting', this.hidePopupSetting, this);
+        cc.systemEvent.on(EventKeys.POPUP.SHOW_RANK, this.showPopupRank, this);
+        cc.systemEvent.on(EventKeys.POPUP.HIDE_RANK, this.hidePopupRank, this);
+        cc.systemEvent.on(EventKeys.POPUP.SHOW_SETTING, this.showPopupSetting, this);
+        cc.systemEvent.on(EventKeys.POPUP.HIDE_SETTING, this.hidePopupSetting, this);
     },
 
     onDestroy() {
-        cc.systemEvent.off('popupRank', this.showPopupRank, this);
-        cc.systemEvent.off('hidePopupRank', this.hidePopupRank, this);
-        cc.systemEvent.off('popupSetting', this.showPopupSetting, this);
-        cc.systemEvent.off('hidePopupSetting', this.hidePopupSetting, this);
+        cc.systemEvent.off(EventKeys.POPUP.SHOW_RANK, this.showPopupRank, this);
+        cc.systemEvent.off(EventKeys.POPUP.HIDE_RANK, this.hidePopupRank, this);
+        cc.systemEvent.off(EventKeys.POPUP.SHOW_SETTING, this.showPopupSetting, this);
+        cc.systemEvent.off(EventKeys.POPUP.HIDE_SETTING, this.hidePopupSetting, this);
     },
 
     onClickBlur() {
