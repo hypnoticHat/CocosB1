@@ -31,11 +31,11 @@ cc.Class({
     },
 
     onDie(){
-        cc.tween(this.node)
+        this.dieTween = cc.tween(this.node)
         .to(1, { scale: 0 })
-        .call(() => {
-            this.node.destroy();
-        })
         .start()
+        this.dieTween.stop();
+        this.dieTween = null;
+        this._super();
     }
 });

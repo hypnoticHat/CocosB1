@@ -5,6 +5,9 @@ cc.Class({
         LevelNoicte: cc.Node,
         LevelLabel: cc.Label
     },
+    onLoad() {
+        cc.director.getCollisionManager().enabled = true;
+    },
 
     start () {
         this.LevelLabel.string = cc.director.getScene().name;

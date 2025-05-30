@@ -26,17 +26,18 @@ cc.Class({
             this.moveTimer = 0;
             this.onMove(2000, dt);
         }
+        
 
     },
 
     runAnimation() {
-        cc.tween(this.node)
+        this.runTween = cc.tween(this.spriteNode)
         .repeatForever(
             cc.tween()
             .to(1, { scale: 1.1 })
             .to(1, { scale:1})
             )
             .start()
-    }
+    },
 
 });

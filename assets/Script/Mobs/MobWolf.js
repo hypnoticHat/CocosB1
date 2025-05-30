@@ -43,7 +43,13 @@ cc.Class({
                 this.node.parent.addChild(item);
             }
         }
-        this.node.destroy();
+
+    cc.tween(this.spriteNode)
+        .to(0.3, { angle: -180 }, { easing: 'sineOut' })
+        .call(() => {
+            this.node.emit('mob-dead', this.id);
+        })
+        .start();
     }
 
 

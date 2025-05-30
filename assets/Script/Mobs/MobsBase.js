@@ -3,6 +3,10 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        mobId: {
+            default: 0,
+            type: cc.Integer,
+        },
         mobType: {
             default: MobsType.DOG,
             type: MobsType,
@@ -18,15 +22,26 @@ cc.Class({
         mobHpBar: {
             default: null,
             type: cc.ProgressBar,
-        }
+        },
+        spriteNode: {
+            default: null,
+            type: cc.Node,
+        },
     },
 
-    onLoad() {
+    // onLoad() {
+    //     this.maxMana = this.mana;
+    //     this.updateHpBar();
+
+    //     this.runAnimation();
+    // },
+
+    onLoad(){},
+
+    init(id){
+        this.id = id;
         this.maxMana = this.mana;
         this.updateHpBar();
-
-        cc.director.getCollisionManager().enabled = true;
-
         this.runAnimation();
     },
 
@@ -55,23 +70,48 @@ cc.Class({
     takeDamage(damage){
         this.mana -= damage;
         this.updateHpBar();
+        this.flashOnHit();
         if(this.mana <= 0){
             this.onDie();
         }
     },
 
-    onDie(){
-        this.node.destroy();
+    flashOnHit() {
+        const target = this.spriteNode;
+
+        if (this.hitTween) {
+            this.hitTween.stop();
+        }
+
+        const originalColor = target.color;
+
+        this.hitTween = cc.tween(target)
+            .to(0.05, { color: cc.Color.RED })
+            .to(0.05, { color: originalColor })
+            .start();
     },
 
+    
     runAnimation(){
-        cc.tween(this.node)
-            .repeatForever(
+        this.runTween = cc.tween(this.spriteNode)
+        .repeatForever(
             cc.tween()
-                .to(.5, { angle: 10 })
-                .to(.5, { angle: -10 })
-            )
-            .start()
-    }
+            .to(.5, { angle: 10 })
+            .to(.5, { angle: -10 })
+        )
+        .start()
+    },
+    
+    onDie(){
+        if (this.walkTween) {
+            this.walkTween.stop();
+            this.walkTween = null;
+        }
 
+        if (this._hitTween) {
+            this._hitTween.stop();
+            this._hitTween = null;
+        }
+        this.node.emit('mob-dead', this.id);
+    },
 });
