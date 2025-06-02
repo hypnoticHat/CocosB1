@@ -1,5 +1,6 @@
 
 const MobsType = require("MobsType");
+const MobController = require("MobController");
 cc.Class({
     extends: require('MobsBase'),
 
@@ -32,10 +33,11 @@ cc.Class({
         this._super(speed, dt)
         this.timePassed = (this.timePassed || 0) + dt;
         this.mobNode.y = Math.sin(this.timePassed * this.frequency * Math.PI * 2) * this.amplitude;
+        this.mobNode.zIndex = Math.floor(-this.mobNode.y);
     },
 
     onDie() {
-        const dropRate = 0.3;
+        const dropRate = 0.1;
         if (this.dropItem && this.node.parent) {
             if (Math.random() < dropRate) {
                 const item = cc.instantiate(this.dropItem);
@@ -43,9 +45,13 @@ cc.Class({
                 this.node.parent.addChild(item);
             }
         }
-        this.node.destroy();
+
+    cc.tween(this.spriteNode)
+        .to(0.3, { angle: -180 }, { easing: 'sineOut' })
+        .call(() => {
+            MobController.instance.onMobDead(this.id);
+        })
+        .start();
     }
-
-
 
 });

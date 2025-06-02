@@ -22,6 +22,7 @@ cc.Class({
     startLoading(targetScene, onFinish = null){
         this.loadingLabel.string = "Loading...";
         this.progressBar.progress = 0;
+        this.lastProgress = 0;
 
         this.spine = this.playerSprite.getComponent(sp.Skeleton);
         this.spine.setAnimation(0,"run",true);
@@ -29,12 +30,17 @@ cc.Class({
 
         cc.director.preloadScene(targetScene, (completedCount, totalCount) => {
             let progress = completedCount / totalCount;
-            this.progressBar.progress = progress;
-            this.spine.timeScale = 0.5 + progress * 1.5;
-            this.loadingLabel.string = `Loading ${Math.floor(progress * 100)}%`;
+            
+            if(progress > this.lastProgress){
+                this.lastProgress = progress;
 
-            let barWidth = this.progressBar.node.width;
-            this.playerSprite.x = this.progressBar.node.x - barWidth / 2 + barWidth * progress;
+                this.progressBar.progress = progress;
+                this.spine.timeScale = 0.5 + progress * 1.5;
+                this.loadingLabel.string = `Loading ${Math.floor(progress * 100)}%`;
+
+                let barWidth = this.progressBar.node.width;
+                this.playerSprite.x = this.progressBar.node.x - barWidth / 2 + barWidth * progress;
+            }
         }, 
         () => {
             cc.director.loadScene(targetScene, () => {
