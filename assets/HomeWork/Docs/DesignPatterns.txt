@@ -1,0 +1,79 @@
+1 Command Pattern
+Lý thuyêt: Command Pattern là cách đóng gói một hành động như một đối tượng, để có thể gọi hành động đó, di chuyển nó, gán nó, ghi lại để làm sau.
+Cấu trúc: 
+- Command: Interface có method Execute()
+- Receiver: Đối tượng thực thi hành động thật sự.
+- Invoker: Gọi Execute() mà không biết chi tiết nội bộ.
+- Client: Tạo command, gán receiver, đưa command cho invoker.
+ví dụ: Khi code input di chuyển player thì thường code chương trình kiểm tra: “nút gì?”, rồi gọi hàm tương ứng -> khó mở rộng và rối
+với Command Pattern thì đóng gói các hành động của player lại thành lệnh, sau đó chỉ cần gọi .Execute() mà không cần biết nó làm gì.
+ưu điểm: dùng lại cùng lệnh cho nhiều thứ khác
+có thể đổi hành vi, gán lệnh khác bất cứ lúc nào
+có thể ghi lại các lệnh người chơi dùng(replay, und0)
+
+2 Flyweight Pattern
+Lý thuyết: Flyweight Pattern là mẫu thiết kế giúp tiết kiệm bộ nhớ bằng cách tái sử dụng các đối tượng giống nhau thay vì tạo mới liên tục.
+Nó chia dữ liệu thành:
+- Intrinsic (nội tại): Dữ liệu dùng chung (không thay đổi theo từng phiên bản).
+- Extrinsic (ngoại tại): Dữ liệu riêng (tùy từng trường hợp sử dụng).
+Cấu trúc: 
+- Flyweight: Interface hoặc class chứa dữ liệu dùng chung và hàm xử lý logic.
+- FlyweightFactory: Quản lý và cung cấp các đối tượng Flyweight đã có sẵn (tái sử dụng).
+- Client: Yêu cầu Flyweight từ Factory, truyền dữ liệu ngoại tại để sử dụng.
+Ví dụ: Thay vì tạo 1000 object Tree, ta tạo 1 object chứa dữ liệu dùng chung (model, texture), rồi dùng Flyweight để hiển thị lại nhiều lần với vị trí khác nhau.
+Ưu điểm: 
+- Giảm chi phí bộ nhớ cực lớn khi có nhiều đối tượng giống nhau.
+- Tái sử dụng hiệu quả các dữ liệu cố định.
+
+3 Observer Pattern
+Lý thuyết: bserver Pattern là mẫu thiết kế giúp một đối tượng (Subject) có thể thông báo cho nhiều đối tượng khác (Observers) khi trạng thái của nó thay đổi, mà không cần biết chi tiết các Observer là ai.
+Cấu trúc:
+- Subject
++ Duy trì danh sách các observer đã đăng ký.
++ Cho phép observer đăng ký (subscribe) hoặc hủy đăng ký (unsubscribe).
++ Gửi thông báo đến tất cả observer khi trạng thái thay đổi.
+- Observers:
++ hàm xử lý (callback) được gọi khi Subject thay đổi (sự kiện xảy ra).
++ Hành vi cụ thể tùy từng Observer, nhưng đều tuân theo cùng một interface hoặc delegate.
+Ưu điểm: 
+Tách rời giữa đối tượng chính và các phần phản ứng → dễ bảo trì, mở rộng.
+Có thể thêm/bớt Observer mà không cần sửa Subject.
+Nhược điểm: 
+Nếu có quá nhiều Observer, có thể gây chậm và khó debug.
+Dễ bị memory leak nếu không quản lý cẩn thận
+
+4. State Pattern
+Lý thuyết: State Pattern là mẫu thiết kế cho phép một đối tượng thay đổi hành vi của nó khi trạng thái nội bộ thay đổi, giống như thể nó là một đối tượng khác.
+Nói cách khác: Thay vì dùng nhiều if/else hay switch để xử lý trạng thái, ta đóng gói mỗi trạng thái thành một lớp riêng và chuyển đổi giữa các lớp đó một cách linh hoạt.
+Cấu trúc:
+- Context
++ Cung cấp giao diện (interface) mà các client sẽ gọi.
++ Duy trì tham chiếu đến một đối tượng trạng thái hiện tại.
++ Cho phép các đối tượng State thay đổi trạng thái hiện tại thông qua phương thức như SetState().
+- State
++ Đóng gói giá trị và hành vi tương ứng với một trạng thái cụ thể.
++ Cài đặt một interface chung, định nghĩa các hành vi có thể xảy ra trong từng trạng thái.
+Ví dụ: một player có thể có nhiều stage khác nhau: chạy, nhảy, đánh, chết
+Ưu điểm: Tránh if/else rối rắm, Không cần viết if (state == ...) trong mỗi lần xử lý.
+Dễ mở rộng, Thêm trạng thái mới thì chỉ cần thêm class mới, không sửa code cũ.
+Mỗi class chỉ chịu trách nhiệm cho 1 trạng thái cụ thể giúp phân chia rõ hành vi
+
+5. Singleton Pattern
+Lý thuyết: Singleton Pattern đảm bảo rằng chỉ có đúng một thể hiện (instance) của một lớp tồn tại trong toàn chương trình, và cung cấp một điểm truy cập toàn cục (global access) tới instance đó.
+Cấu trúc:
+Singleton: 
++ Lớp chứa biến tĩnh (static) để giữ instance duy nhất.
++ Cung cấp phương thức truy cập công khai (thường là Instance hoặc GetInstance()).
++ Tự khởi tạo nếu chưa có.
++ Ngăn chặn việc tạo instance mới từ bên ngoài (bằng cách private constructor).
+ví dụ: Khi làm game, ta thường cần một lớp GameManager để quản lý điểm số, mạng chơi, trạng thái chơi,...
+Nếu mỗi scene hay mỗi hệ thống đều new GameManager(), sẽ có nhiều đối tượng khác nhau -> rối loạn và khó kiểm soát.
+Singleton Pattern đảm bảo chỉ có một GameManager duy nhất hoạt động xuyên suốt game.
+ưu điểm: 
+- Đảm bảo chỉ có 1 instance	giúp ránh xung đột, đảm bảo quản lý duy nhất
+- Truy cập toàn cục, dễ sử dụng từ bất kỳ nơi nào
+- Dễ quản lý trạng thái chung, phù hợp cho các lớp như cấu hình, âm thanh, quản lý game
+Nhược điểm:
+- Khó kiểm thử
+- Ẩn phụ thuộc
+- không thân thiện với multithreading
