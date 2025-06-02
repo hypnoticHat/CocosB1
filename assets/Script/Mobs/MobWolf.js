@@ -1,5 +1,6 @@
 
 const MobsType = require("MobsType");
+const MobController = require("MobController");
 cc.Class({
     extends: require('MobsBase'),
 
@@ -47,11 +48,9 @@ cc.Class({
     cc.tween(this.spriteNode)
         .to(0.3, { angle: -180 }, { easing: 'sineOut' })
         .call(() => {
-            this.node.emit('mob-dead', this.id);
+            MobController.instance.onMobDead(this.id);
         })
         .start();
     }
-
-
 
 });

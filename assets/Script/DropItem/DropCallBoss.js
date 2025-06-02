@@ -1,4 +1,5 @@
 const MobType = require("MobsType");
+const MobController = require("MobController");
 cc.Class({
     extends: cc.Component,
 
@@ -41,13 +42,10 @@ cc.Class({
         if (other.node.group === 'Mobs') {
             const mobScript = other.node.getComponent('MobsBase');
             if (mobScript && mobScript.mobType === MobType.DOG) {
-            other.node.emit('mob-dead', mobScript.id);
+            MobController.instance.onMobDead(mobScript.id);
 
             cc.systemEvent.emit('spawn-boss', this.node.position);
-
-            this.scheduleOnce(() => {
-                this.node.destroy();
-            }, 0.01);
+            this.node.destroy();
             }
         }
     }

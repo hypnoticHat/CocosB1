@@ -1,4 +1,5 @@
 const MobsType = require("MobsType");
+const MobController = require("MobController");
 cc.Class({
     extends: cc.Component,
 
@@ -28,13 +29,6 @@ cc.Class({
             type: cc.Node,
         },
     },
-
-    // onLoad() {
-    //     this.maxMana = this.mana;
-    //     this.updateHpBar();
-
-    //     this.runAnimation();
-    // },
 
     onLoad(){},
 
@@ -112,6 +106,6 @@ cc.Class({
             this._hitTween.stop();
             this._hitTween = null;
         }
-        this.node.emit('mob-dead', this.id);
+        MobController.instance.onMobDead(this.id);
     },
 });
