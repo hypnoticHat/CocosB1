@@ -23,32 +23,124 @@ const MobController = cc.Class({
         this.mobDict = new Map();
         this.mobList = [];
         this._idCounter = 0;
-    },
 
-    start() {
+        this.currentWaveIndex = 0;
+        this.waveTimer = 0;
+        this.spawnTimer = 0;
+        this.inRestTime = false;
+        this.restTimer = 0;
+        this.mobSpawnedInWave = 0;
+
         this.posX = 800;
         this.maxY = 280;
         this.minY = -300;
 
-        this.schedule(() => {
-            const prefab = this.getRandomMobPrefab();
-            if (!prefab) return;
-            const position = this.getRandomPosition();
-            this.spawnMob(prefab, position);
-        }, 1);
-
-        cc.systemEvent.on('spawn-boss', this.onSpawnBoss, this);
-
-        this.schedule(this.cleanupMobs, 0.5);
+        this.defineWaves();
     },
 
-    getRandomMobPrefab() {
-        if (this.mobsPrefab.length === 0) {
-            cc.error('No mob prefabs assigned!');
-            return null;
+    start() {
+        this.schedule(this.updateWaves, 0.1);
+        cc.systemEvent.on('spawn-boss', this.onSpawnBoss, this);
+        this.schedule(this.cleanupMobs, 1);
+    },
+
+    defineWaves() {
+        this.waves = [
+            {
+                duration: 10,
+                spawnInterval: 1,
+                maxMobCount: 5,
+                maxMobInWave: 10,
+                restTime: 10,
+                mobs: [
+                    { prefab: this.mobsPrefab[0], weight: 100 },
+                ]
+            },
+            {
+                duration: 20,
+                spawnInterval: 0.8,
+                maxMobCount: 8,
+                maxMobInWave: 10,
+                restTime: 12,
+                mobs: [
+                    { prefab: this.mobsPrefab[0], weight: 60 },
+                    { prefab: this.mobsPrefab[1], weight: 40 },
+                ]
+            },
+            {
+                duration: 30,
+                spawnInterval: 0.8,
+                maxMobCount: 8,
+                maxMobInWave: 10,
+                restTime: 12,
+                mobs: [
+                    { prefab: this.mobsPrefab[0], weight: 40 },
+                    { prefab: this.mobsPrefab[1], weight: 60 },
+                ]
+            }
+        ];
+    },
+
+    updateWaves(dt) {
+        if (this.currentWaveIndex >= this.waves.length) return;
+
+        const currentWave = this.waves[this.currentWaveIndex];
+
+        if (this.inRestTime) {
+            this.restTimer += dt;
+            if (this.restTimer >= currentWave.restTime) {
+                this.currentWaveIndex++;
+                if(this.currentWaveIndex > this.waves.length-1){
+                    cc.log('End Game!');
+                }
+
+                this.inRestTime = false;
+                this.waveTimer = 0;
+                this.spawnTimer = 0;
+                this.mobSpawnedInWave = 0;
+                cc.log(`Bắt đầu Wave ${this.currentWaveIndex + 1}`);
+            }
+            return;
         }
-        const index = Math.floor(Math.random() * this.mobsPrefab.length);
-        return this.mobsPrefab[index];
+
+        this.waveTimer += dt;
+        this.spawnTimer += dt;
+
+        if (this.spawnTimer >= currentWave.spawnInterval &&
+            this.mobList.length < currentWave.maxMobCount &&
+            this.mobSpawnedInWave < currentWave.maxMobInWave) {
+
+            const prefab = this.getRandomMobPrefab(currentWave.mobs);
+            const pos = this.getRandomPosition();
+            this.spawnMob(prefab, pos);
+            this.spawnTimer = 0;
+            this.mobSpawnedInWave++;
+        }
+
+        const allMobsDead = this.mobList.length === 0;
+        const waveTimeExceeded = this.waveTimer >= currentWave.duration;
+        const spawnDone = this.mobSpawnedInWave >= currentWave.maxMobInWave;
+
+        if (spawnDone && (allMobsDead || waveTimeExceeded)) {
+            this.inRestTime = true;
+            this.restTimer = 0;
+            cc.log(`Kết thúc Wave ${this.currentWaveIndex + 1}, nghỉ ${currentWave.restTime}s`);
+        }
+    },
+
+    getRandomMobPrefab(mobList) {
+        const totalWeight = mobList.reduce((sum, mob) => sum + mob.weight, 0);
+        let rand = Math.random() * totalWeight;
+        let cumulative = 0;
+
+        for (let mob of mobList) {
+            cumulative += mob.weight;
+            if (rand < cumulative) {
+                return mob.prefab;
+            }
+        }
+
+        return mobList[0].prefab;
     },
 
     getRandomPosition() {
@@ -79,7 +171,6 @@ const MobController = cc.Class({
 
         this.mobDict.set(newId, mob);
         this.mobList.push(mob);
-        cc.log(this.mobDict);
 
         return mob;
     },
@@ -111,8 +202,9 @@ const MobController = cc.Class({
             this.mobDict.set(newId, bossScript);
             this.mobList.push(bossScript);
         } else {
-            cc.warn('[MobController] Boss prefab missing MobsBase!');
+            cc.warn('MobController Boss prefab missing MobsBase!');
         }
     }
 });
+
 module.exports = MobController;

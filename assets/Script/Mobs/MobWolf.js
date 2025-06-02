@@ -37,7 +37,7 @@ cc.Class({
     },
 
     onDie() {
-        const dropRate = 0.3;
+        const dropRate = 0.1;
         if (this.dropItem && this.node.parent) {
             if (Math.random() < dropRate) {
                 const item = cc.instantiate(this.dropItem);

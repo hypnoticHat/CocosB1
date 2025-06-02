@@ -432,9 +432,6 @@
     "spriteNode": {
       "__id__": 2
     },
-    "hitEffect": {
-      "__uuid__": "38ffd4c9-a9af-4ea3-9776-ce5adc4bb6bf"
-    },
     "dropItem": {
       "__uuid__": "8316c13d-dacf-4918-8b38-0ad85e31c54a"
     },

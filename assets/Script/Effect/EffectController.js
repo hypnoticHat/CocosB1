@@ -14,12 +14,12 @@ const EffectController = cc.Class({
         if (!EffectController.instance) {
             EffectController.instance = this;
         } else {
-            cc.warn('[EffectController] Multiple instances!');
+            cc.warn('EffectController Multiple instances!');
             this.node.destroy();
         }
 
         if (!this.effectLayer) {
-            cc.error('[EffectController] Effect Layer is not assigned!');
+            cc.error('EffectController Effect Layer is not assigned!');
         }
     },
 
