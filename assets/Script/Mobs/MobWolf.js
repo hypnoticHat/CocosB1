@@ -33,6 +33,7 @@ cc.Class({
         this._super(speed, dt)
         this.timePassed = (this.timePassed || 0) + dt;
         this.mobNode.y = Math.sin(this.timePassed * this.frequency * Math.PI * 2) * this.amplitude;
+        this.mobNode.zIndex = Math.floor(-this.mobNode.y);
     },
 
     onDie() {

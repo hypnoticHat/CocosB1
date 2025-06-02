@@ -420,6 +420,7 @@
       "__id__": 1
     },
     "_enabled": true,
+    "mobId": 0,
     "mobType": 0,
     "mana": 150,
     "mobNode": {
@@ -430,6 +431,9 @@
     },
     "spriteNode": {
       "__id__": 2
+    },
+    "hitEffect": {
+      "__uuid__": "38ffd4c9-a9af-4ea3-9776-ce5adc4bb6bf"
     },
     "_id": ""
   },

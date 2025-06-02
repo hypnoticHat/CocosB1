@@ -25,7 +25,7 @@
       }
     ],
     "_active": true,
-    "_level": 2,
+    "_level": 1,
     "_components": [
       {
         "__id__": 12
@@ -57,8 +57,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 560.893,
-      "y": 45,
+      "x": 0,
+      "y": 0,
       "z": 0
     },
     "_scale": {
@@ -117,8 +117,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
+      "x": 125,
+      "y": 60,
       "z": 0
     },
     "_scale": {
@@ -227,8 +227,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -80,
-      "y": -170,
+      "x": 0,
+      "y": -110,
       "z": 0
     },
     "_scale": {
@@ -420,6 +420,7 @@
       "__id__": 1
     },
     "_enabled": true,
+    "mobId": 0,
     "mobType": 2,
     "mana": 1000,
     "mobNode": {

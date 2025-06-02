@@ -1,5 +1,6 @@
 const MobsType = require("MobsType");
 const MobController = require("MobController");
+const EffectController = require("EffectController");
 cc.Class({
     extends: cc.Component,
 
@@ -68,6 +69,8 @@ cc.Class({
         if(this.mana <= 0){
             this.onDie();
         }
+        const worldPos = this.node.convertToWorldSpaceAR(cc.Vec2.ZERO);
+        EffectController.instance.playEffectText(worldPos,damage,.5);
     },
 
     flashOnHit() {
@@ -107,5 +110,5 @@ cc.Class({
             this._hitTween = null;
         }
         MobController.instance.onMobDead(this.id);
-    },
+    },  
 });

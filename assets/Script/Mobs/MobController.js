@@ -16,6 +16,8 @@ const MobController = cc.Class({
             MobController.instance = this;
         } else {
             cc.warn('Multiple MobController instances!');
+            this.node.destroy();
+            return;
         }
 
         this.mobDict = new Map();
@@ -37,7 +39,7 @@ const MobController = cc.Class({
 
         cc.systemEvent.on('spawn-boss', this.onSpawnBoss, this);
 
-        this.schedule(this.cleanupMobs, 0.5);  // schedule cleanup Ä‘á»‹nh ká»³
+        this.schedule(this.cleanupMobs, 0.5);
     },
 
     getRandomMobPrefab() {
@@ -63,6 +65,8 @@ const MobController = cc.Class({
         const mobNode = cc.instantiate(mobPrefab);
         mobNode.parent = this.mobParent;
         mobNode.position = position;
+        mobNode.zIndex = Math.floor(-position.y);
+
         const mob = mobNode.getComponent('MobsBase');
         if (!mob) {
             cc.warn('Prefab missing MobsBase component!');
@@ -84,13 +88,13 @@ const MobController = cc.Class({
         const mob = this.mobDict.get(id);
         if (mob) {
             mob.node.destroy();
-            mob._isRemoved = true;
+            mob.isRemoved = true;
             this.mobDict.delete(id);
         }
     },
 
     cleanupMobs() {
-        this.mobList = this.mobList.filter(mob => !mob._isRemoved);
+        this.mobList = this.mobList.filter(mob => !mob.isRemoved);
     },
 
     onSpawnBoss(position) {

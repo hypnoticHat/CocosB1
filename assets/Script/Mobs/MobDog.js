@@ -1,6 +1,6 @@
-
+const MobsBase = require("MobsBase");
 cc.Class({
-    extends: require('MobsBase'),
+    extends: MobsBase,
 
     properties: {
         mana: {
@@ -30,12 +30,13 @@ cc.Class({
         this._super(speed,dt);
     },
 
-    onDie(){
+    onDie() {
         this.dieTween = cc.tween(this.node)
         .to(1, { scale: 0 })
-        .start()
-        this.dieTween.stop();
-        this.dieTween = null;
-        this._super();
+        .call(() => {
+            this.dieTween = null;
+            MobsBase.prototype.onDie.call(this);
+        })
+        .start();
     }
 });
