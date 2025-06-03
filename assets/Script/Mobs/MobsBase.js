@@ -1,43 +1,111 @@
+const StateMachine = require('javascript-state-machine');
 const MobsType = require("MobsType");
 const MobController = require("MobController");
 const EffectController = require("EffectController");
+
 cc.Class({
     extends: cc.Component,
 
     properties: {
-        mobId: {
-            default: 0,
-            type: cc.Integer,
-        },
+        mobId: 0,
         mobType: {
             default: MobsType.DOG,
             type: MobsType,
         },
-        mana: {
-            default: 100,
-            type: cc.Integer,
-        },
-        mobNode: {
-            default: null,
-            type: cc.Node,
-        },
-        mobHpBar: {
-            default: null,
-            type: cc.ProgressBar,
-        },
-        spriteNode: {
-            default: null,
-            type: cc.Node,
-        },
+        mana: 100,
+        mobNode: cc.Node,
+        mobHpBar: cc.ProgressBar,
+        spriteNode: cc.Node,
     },
 
-    onLoad(){},
+    onLoad() {
+        this.initFSM();
+    },
 
-    init(id){
+    init(id) {
         this.id = id;
         this.maxMana = this.mana;
         this.updateHpBar();
+
+        this.scheduleOnce(() => {
+            if (this.fsm && this.fsm.can('move')) {
+                this.fsm.move();
+            }
+        }, .2);
+    },
+
+    initFSM() {
+        this.fsm = new StateMachine({
+            init: 'idle',
+            transitions: [
+                { name: 'idle', from: ['none', 'hurt'], to: 'idle' },
+                { name: 'move', from: ['idle', 'hurt'], to: 'move' },
+                { name: 'hit', from: ['idle', 'move'], to: 'hurt' },
+                { name: 'die', from: '*', to: 'dead' },
+            ],
+            methods: {
+                onEnterIdle: this.onEnterIdle.bind(this),
+                onEnterMove: this.onEnterMove.bind(this),
+                onEnterHurt: this.onEnterHurt.bind(this),
+                onEnterDead: this.onEnterDead.bind(this),
+            }
+        });
+    },
+
+    onEnterIdle() {
+        this.stopAnimation();
+    },
+
+    onEnterMove() {
         this.runAnimation();
+    },
+
+    onEnterHurt() {
+        this.stopAnimation();
+        this.flashOnHit();
+
+        this.scheduleOnce(() => {
+            if (this.fsm.state !== 'dead' && this.fsm.can('move')) {
+                this.fsm.move();
+            }
+        }, 0.2);
+    },
+
+    onEnterDead() {
+        this.stopAnimation();
+        MobController.instance.onMobDead(this.id);
+    },
+
+    onMove(speed, dt) {
+        if (this.fsm.state !== 'move') return;
+
+        if (this.mobNode) {
+            this.mobNode.x -= speed * dt;
+            this.checkOutOfScreen();
+        }
+    },
+
+    checkOutOfScreen() {
+        const halfWidth = (cc.winSize.width / 2) + 100;
+        if (this.mobNode.x < -halfWidth || this.mobNode.x > halfWidth) {
+            this.fsm.die();
+        }
+    },
+
+    takeDamage(damage) {
+        if (this.fsm.state === 'dead') return;
+
+        this.mana -= damage;
+        this.updateHpBar();
+
+        const worldPos = this.node.convertToWorldSpaceAR(cc.Vec2.ZERO);
+        EffectController.instance.playEffectText(worldPos, damage, 0.5);
+
+        if (this.mana <= 0) {
+            this.onDie();
+        } else {
+            this.fsm.hit();
+        }
     },
 
     updateHpBar() {
@@ -46,39 +114,11 @@ cc.Class({
         }
     },
 
-    onMove(speed, dt){
-        if(this.mobNode){
-            this.mobNode.x -= speed* dt;
-            this.checkOutOfScreen();
-        }
-    },
-
-    checkOutOfScreen() {
-        const halfWidth = (cc.winSize.width / 2) + 100;
-        const posX = this.mobNode.x;
-
-        if (posX < -halfWidth || posX > halfWidth) {
-            this.onDie();
-        }
-    },
-
-    takeDamage(damage){
-        this.mana -= damage;
-        this.updateHpBar();
-        this.flashOnHit();
-        if(this.mana <= 0){
-            this.onDie();
-        }
-        const worldPos = this.node.convertToWorldSpaceAR(cc.Vec2.ZERO);
-        EffectController.instance.playEffectText(worldPos,damage,.5);
-    },
-
     flashOnHit() {
         const target = this.spriteNode;
+        if (!target) return;
 
-        if (this.hitTween) {
-            this.hitTween.stop();
-        }
+        if (this.hitTween) this.hitTween.stop();
 
         const originalColor = target.color;
 
@@ -88,27 +128,36 @@ cc.Class({
             .start();
     },
 
-    
-    runAnimation(){
-        this.runTween = cc.tween(this.spriteNode)
-        .repeatForever(
-            cc.tween()
-            .to(.5, { angle: 10 })
-            .to(.5, { angle: -10 })
-        )
-        .start()
+    runAnimation() {
+        if (!this.spriteNode) return;
+
+        this.walkTween = cc.tween(this.spriteNode)
+            .repeatForever(
+                cc.tween()
+                    .to(0.5, { angle: 10 })
+                    .to(0.5, { angle: -10 })
+            )
+            .start();
     },
-    
-    onDie(){
+
+    stopAnimation() {
         if (this.walkTween) {
             this.walkTween.stop();
             this.walkTween = null;
         }
 
-        if (this._hitTween) {
-            this._hitTween.stop();
-            this._hitTween = null;
+        if (this.hitTween) {
+            this.hitTween.stop();
+            this.hitTween = null;
         }
-        MobController.instance.onMobDead(this.id);
-    },  
+
+        if (this.spriteNode) {
+            this.spriteNode.angle = 0;
+            this.spriteNode.color = cc.Color.WHITE;
+        }
+    },
+
+    onDie() {
+        this.fsm.die();
+    }
 });

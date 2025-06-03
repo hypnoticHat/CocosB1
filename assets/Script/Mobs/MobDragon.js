@@ -18,24 +18,25 @@ cc.Class({
     onLoad() {
         this._super();
         this.moveTimer = 0;
+
     },
 
     update(dt) {
         this.moveTimer += dt
         if (this.moveTimer >= 1) {
             this.moveTimer = 0;
-            this.onMove(2000, dt);
+            if (this.fsm && this.fsm.state === 'move') {
+                this.onMove(2000, dt);
+            }
         }
-        
-
     },
 
     runAnimation() {
         this.runTween = cc.tween(this.spriteNode)
-        .repeatForever(
-            cc.tween()
-            .to(1, { scale: 1.1 })
-            .to(1, { scale:1})
+            .repeatForever(
+                cc.tween()
+                    .to(1, { scale: 1.1 })
+                    .to(1, { scale: 1 })
             )
             .start()
     },

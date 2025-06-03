@@ -26,16 +26,12 @@ cc.Class({
         this.onMove(200,dt);
     },
 
-    onMove(speed,dt){
-        this._super(speed,dt);
-    },
-
     onDie() {
         this.dieTween = cc.tween(this.node)
-        .to(1, { scale: 0 })
+        .to(.5, { scale: 0.2 })
         .call(() => {
+            this.fsm.die();
             this.dieTween = null;
-            MobsBase.prototype.onDie.call(this);
         })
         .start();
     }

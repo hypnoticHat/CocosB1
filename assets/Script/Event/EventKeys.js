@@ -10,7 +10,9 @@ module.exports = {
         VOLUME_CHANGE: 'volume-change',
         TOGGLE_MUTE: 'toggle-mute',
         PLAY_CLICK_SOUND: 'play-click-sound',
-    }
-
-
+    },
+    CONTROLLER:{
+        SPAWM_BOSS: 'spawn-boss',
+        WAVE_PROGESS: "wave-progress"
+    },
 };
