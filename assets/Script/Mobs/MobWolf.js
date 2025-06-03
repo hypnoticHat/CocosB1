@@ -1,8 +1,7 @@
-
+const MobsBase = require("MobsBase");
 const MobsType = require("MobsType");
-const MobController = require("MobController");
 cc.Class({
-    extends: require('MobsBase'),
+    extends: MobsBase,
 
     properties: {
         mana: {
@@ -30,10 +29,10 @@ cc.Class({
     },
 
     onMove(speed, dt) {
-        this._super(speed, dt)
         this.timePassed = (this.timePassed || 0) + dt;
         this.mobNode.y = Math.sin(this.timePassed * this.frequency * Math.PI * 2) * this.amplitude;
         this.mobNode.zIndex = Math.floor(-this.mobNode.y);
+        this._super(speed, dt)
     },
 
     onDie() {
@@ -46,12 +45,12 @@ cc.Class({
             }
         }
 
-    cc.tween(this.spriteNode)
-        .to(0.3, { angle: -180 }, { easing: 'sineOut' })
-        .call(() => {
-            MobController.instance.onMobDead(this.id);
+        this.dieTween = cc.tween(this.spriteNode)
+            .to(0.3, { angle: -180 }, { easing: 'sineOut' }).call(() => {
+                this.fsm.die();
+                this.dieTween = null;
         })
         .start();
-    }
 
+    }
 });

@@ -1,5 +1,6 @@
 const MobType = require("MobsType");
 const MobController = require("MobController");
+const EventKeys = require('EventKeys');
 cc.Class({
     extends: cc.Component,
 
@@ -44,7 +45,7 @@ cc.Class({
             if (mobScript && mobScript.mobType === MobType.DOG) {
             MobController.instance.onMobDead(mobScript.id);
 
-            cc.systemEvent.emit('spawn-boss', this.node.position);
+            cc.systemEvent.emit(EventKeys.CONTROLLER.SPAWM_BOSS, this.node.position);
             this.node.destroy();
             }
         }
